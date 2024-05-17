@@ -1,0 +1,911 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Storybook</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="20a0cac9-b914-4456-9d28-8c1ddb424bf3" class="page sans"><header><h1 class="page-title">Storybook</h1><p class="page-description"></p></header><div class="page-body"><p id="3087946c-e551-49ed-9f6e-75ba6396e409" class="">
+</p><div id="7efb3e22-cbd8-457a-a243-fd63a12a1992" class="column-list"><div id="8b588f83-5d12-4813-bd4d-6588e10fc1eb" style="width:31.25%" class="column"><nav id="7dafc369-671c-44c1-8713-9d5f51d252b5" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d5ddc041-c2ec-4c7a-94e9-30635cadba97">Introduction</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#03602e0f-5e96-4e52-a4b3-88c9473693cd">Directory</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#004bcac6-9083-45ce-8ce9-a702b6b3ecb7">Component</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#00aa943d-83c0-459b-9b9d-e4ac55eaea67">Creating Component</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4c8890af-6905-467c-ab91-2c675989bc35">Connecting Component to Zeplin</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9489feaf-5e64-4926-a3d8-7a9fdf8e176b">Icon</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7c5bcea-ac04-4523-becb-1d9d6b68c4c9">Patterns to follow</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7b19af32-c6dc-4fc1-b8f7-a59955a6db21">Development Lifecycle</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3d0ef3e8-cd77-498f-a8aa-c59db2fd6e4e">Tutorial</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#17609b56-b588-4efd-a771-59a0a16906c4">SVG Animation (with Lottie)</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a6f949bc-1add-4403-a953-3012347d9021">Designer</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#56aed77c-edd5-4931-ba79-eebfbb2c4cf6">Developer</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#becbe064-1db2-4576-bde3-cf422a8a4430">Scalable Font Size</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7c0073a1-af9c-4f34-8916-902808913afd">Guided Path</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4a566dd0-b1b3-430d-89e7-f3dfda9fac8d">Skeleton Placeholder</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ea17df9f-5aab-4ef9-b297-497608ab4c43">Issues</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#17b2ec54-fe48-4fa2-bcc5-e0d2859fa35c">Scrollable Tab View</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#023b2e4f-31ca-45a5-a818-fc013c35a6da">Guided Path</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#51ae8f53-6d12-4728-ae2d-6bd82da49c30">Translucent StatusBar</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f2bd11df-2251-4779-a515-1d9b90b3e880">Animation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cd211de9-a4a4-4791-818e-dd61ada65d08">Timer is Reset After finish.</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0146cf2a-ce0d-41a1-bd79-9caf62263561">Auto Height BottomSheet </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7fb55ce1-e352-4880-9b3d-2086841ab50a">Running Animation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ddfa10b3-6403-4758-81a7-d18e73a73013">Margin inside SVG Animation</a></div></nav><p id="2d7b9713-da52-4795-83cd-d562553d4b69" class="">
+</p></div><div id="c90f38c1-b717-4a9e-8afd-d848138481ee" style="width:68.75%" class="column"><h2 id="d5ddc041-c2ec-4c7a-94e9-30635cadba97" class="">Introduction</h2><hr id="5a70c79a-11b8-4406-9081-e8433756f94a"/><p id="21c4bf42-f8cb-4550-97f9-8097f0bf709b" class="">Storybook runs alongside your app in development mode. It will help you build UI component and complex layout isolated from business logic and context of your app.</p><p id="c7c835f3-21e5-4e9b-a81a-942df528040f" class="">
+</p><figure id="319fe45a-c841-4ff2-8ef1-415368c6631d" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Untitled.png"><img style="width:631px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Untitled.png"/></a></figure><p id="1ff67a91-0055-43b2-bcd7-e3cd098bbfaf" class="">Please refer to the official docs <a href="https://github.com/storybookjs/react-native">https://github.com/storybookjs/react-native</a></p><ul id="e7f2e4eb-8a70-44bf-b30e-6dda4e6398a0" class="toggle"><li><details open=""><summary>Installation Step </summary><ul id="57e1c97a-d88d-49bc-aa25-d011529ab611" class="bulleted-list"><li style="list-style-type:disc">Run this command to install storybook</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="02b15490-8bfa-4721-bd35-608279579085" class="code"><code class="language-JavaScript">npx -p @storybook/cli sb init --type react_native</code></pre><ul id="c63a3dc9-9e5d-4e88-be95-4b171beed79c" class="bulleted-list"><li style="list-style-type:disc">Accept it if it is asking to install storybook server, if not, run this command:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9532e90a-2b70-4c9c-8fac-781b686d4922" class="code"><code class="language-JavaScript">yarn add @storybook/react-native-server</code></pre><ul id="dc3f8e3d-4fa2-40df-867a-29a70f789b64" class="bulleted-list"><li style="list-style-type:disc">Add this code on your entrypoint:</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b046097f-1ceb-4599-84a2-8e2ceec39ed2" class="code"><code class="language-JavaScript">export {default} from &quot;./storybook&quot;;</code></pre><ul id="b0d8772e-bcfb-4ae5-a9cd-0d7c1f79fb4f" class="bulleted-list"><li style="list-style-type:disc">Run storybook server</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8d29fd4e-15eb-4a7e-a802-353156e7ba22" class="code"><code class="language-JavaScript">yarn start-storybook
+
+or add script to your package.json
+
+&quot;storybook&quot;: &quot;start-storybook&quot;</code></pre><ul id="be76e56c-69e7-40df-9d5a-1bfb1e33baa7" class="bulleted-list"><li style="list-style-type:disc">Storybook configuration</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d55551cb-040b-4c8c-8d9c-430f306a511f" class="code"><code class="language-JavaScript">import {AppRegistry} from &#x27;react-native&#x27;;
+import {getStorybookUI, configure} from &#x27;@storybook/react-native&#x27;;
+
+import &#x27;./rn-addons&#x27;;
+
+configure(() =&gt; {
+  require(&#x27;./stories&#x27;);
+}, module);
+
+const StorybookUIRoot = getStorybookUI({
+  asyncStorage: null,
+  port: 7007,
+});
+
+AppRegistry.registerComponent(&#x27;%APP_NAME%&#x27;, () =&gt; StorybookUIRoot);
+
+export default StorybookUIRoot;</code></pre><ul id="740a939b-26dd-481f-9bc7-c836c049dfca" class="bulleted-list"><li style="list-style-type:disc">There is configuration to choose either you run Storybook or the apps.</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c8dee541-0992-4301-b458-82e667fbeff9" class="code"><code class="language-JavaScript">const root = IS_STORYBOOK ? Storybook : projects;
+export default root;</code></pre></details></li></ul><h1 id="03602e0f-5e96-4e52-a4b3-88c9473693cd" class="">Directory</h1><hr id="74b6d634-f06b-4558-b325-46737b65eb35"/><div id="15f6079a-7ec7-43f4-875b-4c40cc11322b" class="collection-content"><h4 class="collection-title">Document</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesUrl"><path d="M7.69922 10.8945L8.73828 9.84863C7.91797 9.77344 7.34375 9.51367 6.91992 9.08984C5.76465 7.93457 5.76465 6.29395 6.91309 5.14551L9.18262 2.87598C10.3379 1.7207 11.9717 1.7207 13.127 2.87598C14.2891 4.04492 14.2822 5.67188 13.1338 6.82031L11.958 7.99609C12.1768 8.49512 12.2451 9.10352 12.1289 9.62988L14.0908 7.6748C15.7725 6 15.7793 3.62109 14.084 1.92578C12.3887 0.223633 10.0098 0.237305 8.33496 1.91211L5.95605 4.29785C4.28125 5.97266 4.26758 8.35156 5.96289 10.0469C6.36621 10.4434 6.90625 10.7441 7.69922 10.8945ZM8.30078 5.13184L7.26855 6.17773C8.08203 6.25293 8.66309 6.51953 9.08008 6.93652C10.2422 8.09863 10.2422 9.73242 9.08691 10.8809L6.81738 13.1504C5.66211 14.3057 4.03516 14.3057 2.87305 13.1504C1.71094 11.9883 1.71777 10.3545 2.87305 9.20605L4.04199 8.03027C3.83008 7.53125 3.75488 6.92969 3.87109 6.39648L1.91602 8.35156C0.234375 10.0264 0.227539 12.4121 1.92285 14.1074C3.61816 15.8027 5.99707 15.7891 7.67188 14.1143L10.0439 11.7354C11.7256 10.0537 11.7324 7.6748 10.0371 5.98633C9.64062 5.58301 9.10059 5.28223 8.30078 5.13184Z"></path></svg></span>URL</th></tr></thead><tbody><tr id="bd3a0364-1d1b-4e6b-ac3d-3191c4b60c0a"><td class="cell-title"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Document%2015f6079a7ec743f4875b4c40cc11322b/Github%20MySF%20bd3a03641d1b4e6bac3d3191c4b60c0a.html">Github MySF</a></td><td class="cell-`tE_"><a href="https://gitlab.smartfren.com/sinarmasdigital-tio/mysf/mysf-v7-rn" class="url-value">https://gitlab.smartfren.com/sinarmasdigital-tio/mysf/mysf-v7-rn</a></td></tr><tr id="aae6d36e-ef42-4a43-9766-2937f28cb5d0"><td class="cell-title"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Document%2015f6079a7ec743f4875b4c40cc11322b/Zeplin%20MySF%20aae6d36eef424a4397662937f28cb5d0.html">Zeplin MySF</a></td><td class="cell-`tE_"><a href="https://zpl.io/b6LNo0P" class="url-value">https://zpl.io/b6LNo0P</a></td></tr><tr id="ef0df3dc-d341-407f-8908-0de694c04a69"><td class="cell-title"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Document%2015f6079a7ec743f4875b4c40cc11322b/Zeplin%20MySF%20-%20updates%20ef0df3dcd341407f89080de694c04a69.html">Zeplin MySF - updates</a></td><td class="cell-`tE_"><a href="https://zpl.io/amjRMLv" class="url-value">https://zpl.io/amjRMLv</a></td></tr><tr id="8dc5ca26-60be-446d-8f31-f05ee6cd5fcf"><td class="cell-title"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Document%2015f6079a7ec743f4875b4c40cc11322b/Zeplin%20Treasure%20Hunt%208dc5ca2660be446d8f31f05ee6cd5fcf.html">Zeplin Treasure Hunt</a></td><td class="cell-`tE_"><a href="https://zpl.io/a8n0Kqd" class="url-value">https://zpl.io/a8n0Kqd</a></td></tr></tbody></table><br/><br/></div><h1 id="004bcac6-9083-45ce-8ce9-a702b6b3ecb7" class="">Component</h1><hr id="ba6c88a2-3512-4f1c-8070-80e8731907c3"/><h2 id="00aa943d-83c0-459b-9b9d-e4ac55eaea67" class="">Creating Component</h2><p id="96a0a361-259b-4aa5-b163-a80fea6f1634" class="block-color-gray">Component could be made either a class component or functional component. </p><ul id="aaaeaa1c-08f8-4fe1-9814-d67310f66b2a" class="bulleted-list"><li style="list-style-type:disc">create a components folder in /src, use general name for general component and add feature name if the component is for specific feature. <figure id="c5d44485-7995-4aab-bbb7-21414e131cce" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-08_at_15.28.24.png"><img style="width:192px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-08_at_15.28.24.png"/></a></figure></li></ul><ul id="5c6ff6f0-6a6d-4312-a8eb-e3a761aee7c5" class="bulleted-list"><li style="list-style-type:disc">create story folder inside /storybook/stories, try to group it to make it more organize. You will call the component from here to run in storybook. <figure id="db9b9ad7-80a2-4f8f-9b85-aa8f8e02deb4" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-08_at_15.33.01.png"><img style="width:192px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-08_at_15.33.01.png"/></a></figure></li></ul><ul id="bd30dc87-5073-4a72-a4d3-de7427047995" class="bulleted-list"><li style="list-style-type:disc">last step, add the new stories to storybook list in storybook/stories/index.js<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2cf188ed-0019-4449-9ece-0248e2ccd477" class="code"><code class="language-JavaScript">import React from &#x27;react&#x27;;
+
+import {storiesOf} from &#x27;@storybook/react-native&#x27;;
+import {linkTo} from &#x27;@storybook/addon-links&#x27;;
+import {
+  withKnobs,
+} from &#x27;@storybook/addon-knobs&#x27;;
+
+import CenterView from &#x27;./CenterView&#x27;;
+import Welcome from &#x27;./Welcome&#x27;;
+
+//new component
+import ButtonStory from &#x27;./Button&#x27;;</code></pre></li></ul><h2 id="4c8890af-6905-467c-ab91-2c675989bc35" class="">Connecting Component to Zeplin</h2><ul id="fc5160ee-701e-454f-8a4a-994cafd1e9cc" class="bulleted-list"><li style="list-style-type:disc">Open Zeplin </li></ul><figure id="1ce78eb2-2a6b-4b6c-b24b-9bae10ea05f1" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.48.17_AM.png"><img style="width:672px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.48.17_AM.png"/></a></figure><ul id="a555127d-a085-4c09-b83f-afbfbf860794" class="bulleted-list"><li style="list-style-type:disc">Select Styleguides and right Project, MySF_Component for component use adobe XD, MySF_Figma_Library for component use Figma. We are migrating to Figma and soon will leave adobe XD.</li></ul><ul id="aeb4561b-96fa-4caa-a176-0a1c2a3b3376" class="bulleted-list"><li style="list-style-type:disc">Select the component, get the component ID or component Name</li></ul><figure id="c3793418-b8e3-4fb0-866c-50f8151e134c" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.51.54_AM.png"><img style="width:912px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.51.54_AM.png"/></a></figure><ul id="204ce747-bafb-404c-98e1-cd294bcc385b" class="bulleted-list"><li style="list-style-type:disc">Open the file .zeplin/components.json, append the new component to the last item following the previous format.</li></ul><figure id="dc616c64-be85-4d6b-b027-a5228fb53620" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.53.55_AM.png"><img style="width:768px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_10.53.55_AM.png"/></a></figure><ul id="2a0b58d3-1f91-4292-987d-8ef7cdaa72f0" class="bulleted-list"><li style="list-style-type:disc">Run zeplin connect on your project, If success, you will get the following screenshoot. If not, read the error log and try to fix it.<figure id="fd88e899-afdb-432e-8862-317851e45a1b" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_11.01.48.png"><img style="width:1008px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_11.01.48.png"/></a></figure></li></ul><h2 id="9489feaf-5e64-4926-a3d8-7a9fdf8e176b" class="">Icon</h2><ul id="d5fda8ad-60b8-4c11-b2c5-ba5c425989cb" class="bulleted-list"><li style="list-style-type:disc">Copy the svg of the icon</li></ul><ul id="8af90ca6-1b35-40b5-9d87-6c4f39bae7b3" class="bulleted-list"><li style="list-style-type:disc">The icon should only have one path and add it to the icons_collections.json following current format.<figure id="a7dc587a-ab82-49a5-94fd-b79083ea8c24" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_14.38.31_PM.png"><img style="width:2552px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-19_at_14.38.31_PM.png"/></a></figure></li></ul><ul id="58c97609-0f84-4df7-b868-59c9a77a1243" class="bulleted-list"><li style="list-style-type:disc">You can call the icon using Icons Component from src/components/Icons/Icons.tsx.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b5de4165-f6e9-4c03-803a-975f8748ad9f" class="code"><code class="language-JavaScript">&lt;Icons name=&quot;00038_02_alarm_filled /&gt;</code></pre></li></ul><ul id="beb3051e-aae9-4dfa-95ae-3c9723720e29" class="bulleted-list"><li style="list-style-type:disc"> Do not forget to check the icon in storybook.</li></ul><h2 id="a7c5bcea-ac04-4523-becb-1d9d6b68c4c9" class="">Patterns to follow</h2><ul id="d36906c0-f6ff-43a1-983d-ad203799be3a" class="bulleted-list"><li style="list-style-type:disc">Use interface or type.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d06e6a19-ca12-474b-926c-19ecd364f36b" class="code"><code class="language-JavaScript">/**
+* Use interface and extends it according the last components in your components.
+* if you wrap your component with View, extends it to ViewProps, 
+* if your wrap it with TouchableOpacity, extends it with TouchableOpacityProps
+**/
+export type SelectedDateRenewalProps = {
+  date: number;
+};
+
+export interface DateRenewalProps extends ViewProps {
+  style?: StyleProp&lt;ViewStyle&gt;;
+  title?: string;
+  titleProps?: TxtProps;
+  subtitle?: string;
+  subtitleProps?: TxtProps;
+  labelYes?: string;
+  onPressYes?: (props?: any) =&gt; void;
+  onPressYesProps?: ButtonSmartProps;
+  labelNo?: string;
+  onPressNo?: (props?: any) =&gt; void;
+  onPressNoProps?: ButtonSmartProps;
+  onSelectDate?: (props: SelectedDateRenewalProps) =&gt; void;
+}</code></pre></li></ul><ul id="a7556111-4cde-4405-b99a-713ad337f220" class="bulleted-list"><li style="list-style-type:disc">use optional and required mark properly<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bdf5703b-228c-4126-ad42-0a0f254d7d9e" class="code"><code class="language-JavaScript">//startDate and endDate are required for this Component.
+
+export interface BonusCalendarProps extends ViewProps {
+  style?: any;
+  startDate: Date;
+  endDate: Date;
+  markedDate?: MarkedDate[];
+  today?: Date;
+  /**
+   * 0 = Sunday
+   */
+  startDay?: number;
+  /**
+   * Total days in calendar
+   */
+  maxDate?: number;
+  labelToday?: string;
+  labelDays?: string[];
+}</code></pre></li></ul><ul id="3ca32c37-8b33-44b8-ab0c-dddf58d15fe0" class="bulleted-list"><li style="list-style-type:disc">Make the props scalable<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="95501aab-914f-4ed1-bdd4-824fcf9a3012" class="code"><code class="language-JavaScript">/**
+* if you have props title to Txt components,
+* add titleProps with type TxtProps and 
+**/
+export interface DateRenewalProps extends ViewProps {
+  style?: StyleProp&lt;ViewStyle&gt;;
+  title?: string;
+  titleProps?: TxtProps;
+  subtitle?: string;
+  subtitleProps?: TxtProps;
+  labelYes?: string;
+  onPressYes?: (props?: any) =&gt; void;
+  onPressYesProps?: ButtonSmartProps;
+  labelNo?: string;
+  onPressNo?: (props?: any) =&gt; void;
+  onPressNoProps?: ButtonSmartProps;
+  onSelectDate?: (props: SelectedDateRenewalProps) =&gt; void;
+}
+
+//add titleProps with spread syntax into the component
+&lt;Txt
+  size={SIZE.TEXT_16}
+  types={&#x27;semibold&#x27;}
+  lineHeight={24}
+  {...titleProps}
+&gt;
+  {title}
+&lt;/Txt&gt;</code></pre></li></ul><ul id="77139732-e040-4b42-938a-9cb3a653bb0a" class="bulleted-list"><li style="list-style-type:disc">Do not create inline styles<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="036cdb65-405c-4065-b28e-58aceffbb415" class="code"><code class="language-JavaScript">Don&#x27;t
+
+&lt;View style={{ backgroundColor: WHITE }}&gt;
+  ...
+&lt;/View&gt;
+
+Do
+
+&lt;View style={styles.container}&gt;
+  ...
+&lt;/View&gt;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: WHITE,
+  },
+)};</code></pre></li></ul><ul id="4f9bd54f-0081-4151-86c2-d08fe8ec3970" class="bulleted-list"><li style="list-style-type:disc">Do not delete existing props except you are sure no one use it, instead use deprecated tag. <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="62a57c38-d179-4d7b-933f-3ca803fe39c2" class="code"><code class="language-JavaScript">export type DateTimePickerProps = {
+  style?: ViewStyle;
+  title?: string;
+  onCancel: () =&gt; void;
+  onSelectDate: (data: any) =&gt; void;
+  monthsLocale?: string[];
+  labelCancel?: string;
+  labelSelect?: string;
+  startYear?: number;
+  /**
+   * @deprecated replace by @limit
+   */
+  endYear?: number;
+  limit?: Date;
+  itemHeight?: number;
+  initiatedDate?: Date;
+  isVisible?: boolean;
+};</code></pre></li></ul><ul id="30e1fea9-3e61-462a-a84a-b362a3ba7451" class="bulleted-list"><li style="list-style-type:disc">Do not use default value for string props for Text component, label need to have two language, Bahasa and English.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3fb5436d-e0fb-4d79-8dde-a0726838f863" class="code"><code class="language-JavaScript">const HeaderBar: React.FC&lt;HeaderBarProps&gt; = ({
+  style,
+  divider = false,
+  bgColor = HEADER_BAR_WRAPPER_BG_DEFAULT,
+  onLeftBtnPress,
+  leftBtnIcon,
+  leftBtnIconColor = HEADER_BAR_ICON_DEFAULT,
+  leftBtnProps,
+  title,
+  titleColor = HEADER_BAR_TITLE_DEFAULT,
+  titleProps,
+  label,
+  labelColor = HEADER_BAR_LABEL_DEFAULT,
+  labelProps,
+  children,
+  accessibilityLabel,
+  accessibilityHint,
+  markdownAlignment = &#x27;flex-start&#x27;,
+  ...otherProps
+}) =&gt; {
+	...
+}</code></pre></li></ul><ul id="17e22679-0d47-4665-8866-98df18cc0f18" class="bulleted-list"><li style="list-style-type:disc">Don not use nested ternary, prefer to use if else to make it more readable next time you visit it again or for the others engineer.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3240b6e1-1a1a-4682-a047-0878db18e0d1" class="code"><code class="language-JavaScript">//Do not do this
+isAvailable? true : isRotate? true : isTranslated? true : false
+
+//Do this
+
+if (isAvailable) {
+	return true;
+} else if (isRotate) {
+	return true;
+} else if (isTranslated) {
+	return true;
+} else {
+	return false;
+}</code></pre></li></ul><h1 id="7b19af32-c6dc-4fc1-b8f7-a59955a6db21" class="">Development Lifecycle</h1><hr id="4cdce791-225f-42d4-b685-336c3d1110f1"/><ul id="6173cefc-1b37-4699-acdf-c753bb6afdcb" class="bulleted-list"><li style="list-style-type:disc">Create a branch off of <code>master</code><p id="21349717-1e10-4d4a-ba4a-d6116e713b75" class="">Name the branch with your first name pre-pended:<br/><br/><code>story/cool-feature</code></p><p id="102a8e62-44a4-4d09-95bf-fe3f3155082f" class="">Commit your work frequently and use descriptive comment. When you are finish, rebase your work to master branch and squash the commit message into one commit message per ticket (ussually you will have one ticket per branch)</p><p id="5af6ae0d-aebf-418a-9e98-ee24e7f00f68" class="">Push your branch onto remote repository at the end of the days if you have not finished yet.</p></li></ul><ul id="f14a62b8-ddce-4b8c-a611-d483c278c063" class="bulleted-list"><li style="list-style-type:disc">Testing<ul id="57c36f9b-0b8d-4fe9-a481-9d4f016e6dfe" class="bulleted-list"><li style="list-style-type:circle">Test your component on android in screen size <strong>720x1280 </strong>and<strong> 1080x2280</strong>,  <strong>iPhone6</strong> and <strong>iPhone 11</strong>, <strong>iPad</strong>. </li></ul><ul id="2eb1276f-387f-4706-9443-dedb136be3b1" class="bulleted-list"><li style="list-style-type:circle">Make <strong>screenshoot</strong> for each screen and try to use <strong>Larger Font </strong>from your device, see if the layout is breaking or not.</li></ul><ul id="4aefcbfb-0662-436f-949b-1a549c3d8cc5" class="bulleted-list"><li style="list-style-type:circle">Try to use <strong>long text</strong> for for each label and make sure the layout don&#x27;t break.</li></ul></li></ul><ul id="488a58bb-0e46-44a1-a03e-b5475570a09a" class="bulleted-list"><li style="list-style-type:disc">Create a Merge Request on Gitlab<p id="bbe843a4-0f0e-4d08-96c7-5928ec2d893a" class="">Include the screenshoot or video of your component.</p></li></ul><ul id="77cc2789-e8c8-443f-a058-f6feed865506" class="bulleted-list"><li style="list-style-type:disc">Submit for review<p id="e6a29416-510f-41eb-861f-177751c9dce7" class="">Add additional approver if you needed. </p></li></ul><h1 id="3d0ef3e8-cd77-498f-a8aa-c59db2fd6e4e" class="">Tutorial</h1><hr id="0df25212-c135-48f2-9fc4-d02485f66c68"/><h2 id="17609b56-b588-4efd-a771-59a0a16906c4" class="">SVG Animation (with Lottie)</h2><h3 id="a6f949bc-1add-4403-a953-3012347d9021" class="">Designer</h3><ul id="db277ec7-ad41-41b8-bd2a-e1aeacf0dbb0" class="bulleted-list"><li style="list-style-type:disc">If this is your first time using SVG animation, please refer this documents.<p id="8fd32aac-6c1e-4e9e-8401-07db34987b4b" class=""><a href="https://docs.google.com/document/d/14h6V1ab0n-cKW5olSzTQLYWhzLrWIej2glbHh8gF5GI/edit?usp=sharing">https://docs.google.com/document/d/14h6V1ab0n-cKW5olSzTQLYWhzLrWIej2glbHh8gF5GI/edit?usp=sharing</a></p></li></ul><ul id="a2959aaa-904a-4ea4-a69c-8ebe8354e186" class="bulleted-list"><li style="list-style-type:disc">Tips And Trick<p id="cfba3994-be2c-435f-ab4b-1a926a185ab3" class=""><a href="https://airbnb.io/lottie/#/after-effects?id=creating-lottie-animations">https://airbnb.io/lottie/#/after-effects?id=creating-lottie-animations</a></p></li></ul><p id="a5983216-be02-4dd6-8212-e6bac6845ab2" class="">
+</p><h3 id="56aed77c-edd5-4931-ba79-eebfbb2c4cf6" class="">Developer</h3><ul id="3a1c24df-e36f-4056-99b5-a075d5346532" class="bulleted-list"><li style="list-style-type:disc">React Native Guideline: <a href="https://github.com/lottie-react-native/lottie-react-native">https://github.com/lottie-react-native/lottie-react-native</a></li></ul><ul id="ebf44433-d846-4d46-850e-0363fc3d3830" class="bulleted-list"><li style="list-style-type:disc">From official website <a href="https://airbnb.io/lottie/#/react-native">https://airbnb.io/lottie/#/react-native</a></li></ul><p id="5f392180-979c-47e6-85b5-dbbdf3a609e4" class="">
+</p><h2 id="becbe064-1db2-4576-bde3-cf422a8a4430" class="">Scalable Font Size</h2><p id="9ea5fef8-b442-464e-a45b-7510f4547a69" class="">Function to create scalable font size in MySF, textAdjust accept size that will be scaled and will calculate the new size based on device screen width. This function also applicable to other component with fixed size to make it responsive.</p><p id="6bc5945f-17a3-40d1-b1ee-d07d045eca70" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cdbc9e9f-65b9-49cd-b1df-b1c5a0a37453" class="code"><code class="language-JavaScript">import {SCREEN_WIDTH} from &#x27;helpers/screenSize&#x27;;
+
+export function textAdjust(size: number) {
+  const MAX_SCALE_FACTOR = 1.5;
+  const BASE_SCREEN_SIZE = 360;
+  const scaleFactor = SCREEN_WIDTH / BASE_SCREEN_SIZE;
+  return Math.min(scaleFactor, MAX_SCALE_FACTOR) * size;
+}</code></pre><p id="a7d75db1-951e-49fe-a041-1a4cebd5c997" class="">
+</p><p id="c2db261b-e506-4eb4-a129-a7db8afee5fe" class="">SCREEN_WIDTH is const that will return device screen width.</p><p id="4a267ca3-882c-4739-9454-dbd304d2448a" class="">MAX_SCALE_FACTOR is maximum scale factor if the screen is too big (iPad and Tablet)</p><p id="fd87dcc1-512d-47ad-b5a4-03464e9cfd92" class="">BASE_SCREEN_SIZE is screen width that designer use on their phone screen design.</p><p id="7a653cef-cc96-4cd6-a862-268eb052215a" class=""><strong>How to Use</strong></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5329e395-10f3-45d0-91b8-9025e5e5444f" class="code"><code class="language-JavaScript">&lt;Text style={{fontSize: textAdjust(16)}} /&gt;
+
+&lt;View style={{width: textAdjust(320), height: textAdjust(56)}} /&gt;</code></pre><h2 id="7c0073a1-af9c-4f34-8916-902808913afd" class="">Guided Path</h2><p id="da9b0f78-158b-4727-9ffd-0113714954dc" class="">Highlight a component by duplicating the component and display it inside the modal box alongside the description and overlay dimmed background.</p><p id="4c9c1a9c-034d-4201-97e6-29dbcfb9f0ab" class="">Guided Path use modal from <a href="https://github.com/react-native-modal/react-native-modal">react-native-modal</a> to show the highlighted component, in order to render it properly, the component need time and make sure the highlighted component is rendered first. If the component is changing position while it rendering, the Guided path will also change the highlighted position when it is visible.</p><p id="565112ae-0864-4fb9-a780-6fd50d4e0ca6" class="">Component Name: ToolTipV2</p><p id="c16e1cd7-41e8-4eb1-9e1a-03d97b62b572" class="">Location: src/components/ToolTip/ToolTipV2.tsx</p><p id="0aef24d7-2d79-4a27-9814-7825c8169554" class="">Storybook link: <a href="http://localhost:7007/?path=/story/tooltip--tooltip-big">http://localhost:7007/?path=/story/tooltip--tooltip-big</a></p><p id="c4df3418-632d-4c26-aeb4-0d14b7ff657f" class="">Google Docs: <a href="https://docs.google.com/document/d/1V0HIUGwc0sd7rOwCUr2-9hwCbsS9af_ekGE_MHU3xew/edit?usp=sharing">https://docs.google.com/document/d/1V0HIUGwc0sd7rOwCUr2-9hwCbsS9af_ekGE_MHU3xew/edit?usp=sharing</a> </p><p id="3028ac82-af0b-4d61-b9c5-14f214131291" class="">How to use:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="607cebf9-81f3-4b0c-a7e6-e36a638e61a4" class="code"><code class="language-JavaScript">const bigToolTipProps: BigToolTipProps = {
+    title: &#x27;Semua dalam satu&#x27;,
+    content:
+      &#x27;Anda dapat memasukkan semua nomor smartfren yang Anda miliki dalam satu aplikasi.&#x27;,
+    showIndicator: true,
+    indicatorIdx: 2,
+    indicatorLength: 5,
+    isBtnBackVisible: false,
+    isBtnNextVisible: true,
+    labelBtnBack: &#x27;BACK&#x27;,
+    labelBtnNext: &#x27;NEXT&#x27;,
+    onPressBtnBack: hideBig,
+    onPressBtnNext: hideBig,
+    onClose: hideBig,
+  };
+
+ const tooltipProps2: ToolTipV2Props = {
+    type: &#x27;big&#x27;,
+    position: &#x27;bottom&#x27;,
+    isVisible: isVisibleBig,
+    showChildInToolTip: true,
+    inset: SPACER.MD,
+    spaceFromItem: SPACER.XS,
+    enableChildInteraction: false,
+    bigToolTipProps: bigToolTipProps,
+    onDismiss: hideBig,
+  };
+
+&lt;ToolTipV2 {...tooltipProps2}&gt;
+  &lt;View
+    style={{
+      borderWidth: 1,
+      borderColor: DARK_100,
+      padding: SPACER.MD,
+      marginTop: SPACER.MD,
+      backgroundColor: WHITE,
+    }}
+  &gt;
+    &lt;DataPlan cardUserPlanProps={cardUserPlanProps} /&gt;
+  &lt;/View&gt;
+&lt;/ToolTipV2&gt;</code></pre><figure id="6df6ba03-503d-405c-a456-27c3fa1df763" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-22_at_08.45.43.png"><img style="width:576px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Screen_Shot_2021-11-22_at_08.45.43.png"/></a></figure><h2 id="4a566dd0-b1b3-430d-89e7-f3dfda9fac8d" class="">Skeleton Placeholder</h2><p id="1c154567-711e-4433-a5e9-0bdff39a5661" class="">Create skeleton placeholder with Fade-In and Fade-Out animation.</p><p id="e69bd7ea-a907-4769-83f6-554a06efd72c" class="">Component Name: Placeholder, PlaceholderLine, PlaceholderMedia</p><p id="1d725d5f-cf36-4491-82df-927bcd6189d6" class="">Location: </p><ul id="daee495b-bfaf-4fb3-bde9-0cb6db4a29f2" class="bulleted-list"><li style="list-style-type:disc">src/components/Placeholder/Placeholder.tsx,</li></ul><ul id="8e09d4ef-2e52-4ac9-baa5-eb110ef04aea" class="bulleted-list"><li style="list-style-type:disc">src/components/Placeholder/PlaceholderLine.tsx, </li></ul><ul id="739c0c06-b5af-4d53-a506-4289612d46ed" class="bulleted-list"><li style="list-style-type:disc">src/components/Placeholder/PlaceholderMedia.tsx</li></ul><p id="adca7b02-9c7b-4331-8ceb-20d71d10975d" class="">Storybook link: <a href="http://localhost:7007/?path=/story/templates-placeholder--line-and-media">http://localhost:7007/?path=/story/templates-placeholder--line-and-media</a></p><p id="6706d9f1-b27f-49f1-83d8-36a6db9cfc10" class="">How to use:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8d5d167d-ec1d-4ddd-9feb-48554eedfdfb" class="code"><code class="language-JavaScript">&lt;Placeholder Animation={Fade} style={{marginBottom: SPACER.MD}}&gt;
+  &lt;PlaceholderLine /&gt;
+&lt;/Placeholder&gt;
+
+&lt;Placeholder Animation={Fade} style={{marginBottom: SPACER.MD}}&gt;
+  &lt;PlaceholderMedia width={32} height={32} /&gt;
+&lt;/Placeholder&gt;</code></pre><p id="92f0924e-0376-46cc-97a1-7057227a8649" class="">Preview:</p><figure id="0654527e-8f0e-4ed2-9ee7-473c30e02783" class="image"><a href="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Untitled%201.png"><img style="width:288px" src="Storybook%2020a0cac9b91444569d288c1ddb424bf3/Untitled%201.png"/></a></figure><h1 id="ea17df9f-5aab-4ef9-b297-497608ab4c43" class="">Issues</h1><hr id="b50d9dc5-cdf2-46e5-b6cf-085b37349ea3"/><h2 id="17b2ec54-fe48-4fa2-bcc5-e0d2859fa35c" class="">Scrollable Tab View</h2><p id="077bf5a5-aee4-4f25-b474-84e125b3df12" class="">TabView component is a library from <a href="https://github.com/satya164/react-native-tab-view">react-native-tab-view</a> v2.15.2 and there are the swipe gesture function to navigate between tab. </p><p id="62b5932d-2b97-42da-a10b-74aac1311e22" class="">Horizontal scrollable component will accidentally switch tab when you are horizontally swipe inside the component.</p><p id="a8afc360-16f6-4d0f-b004-e11f7651dc4d" class=""><strong>Solution</strong></p><p id="a4ba1757-5d70-4b33-8418-73522aa76b3c" class="">Use ScrollView or FlatList from <a href="https://github.com/software-mansion/react-native-gesture-handler">react-native-gesture-handler</a> inside TabView</p><h2 id="023b2e4f-31ca-45a5-a818-fc013c35a6da" class="">Guided Path</h2><h3 id="51ae8f53-6d12-4728-ae2d-6bd82da49c30" class="">Translucent StatusBar</h3><p id="bba252de-6ab9-45df-b751-694806791419" class="">Translucent StatusBar on Android will make incorrect position of the Guided Path</p><p id="0bb3b1bc-2a96-4a8a-b03d-3284dcdd5669" class=""><strong>Solution</strong></p><p id="c9435a33-cea2-4fbe-be1c-d66ebe853cb5" class="">Set props isStatusBarTranslucent on <strong>&lt;ToolTipV2 /&gt;</strong> to true if the StatusBar is translucent.</p><p id="97b1df33-183d-46e4-829e-305a8394aef8" class="">
+</p><h3 id="f2bd11df-2251-4779-a515-1d9b90b3e880" class="">Animation</h3><p id="992be6b9-00d9-4ba4-90ed-3947ab841bb1" class="">Loop animation will prevent Guided Path visible until the animation finish.</p><p id="55ae4216-9970-4a27-9b73-acd47906d6a4" class="">GuidedPath use InteractionManager to wait initial interaction from others component before it&#x27;s rendering completely and by default, React Native, set Animated Component as interaction.</p><p id="09aee5ff-e277-4070-afec-5a2c8117a24d" class=""><strong>Solution</strong></p><p id="255015eb-4cef-4ed3-8c85-d1d29f5709a5" class="">set isInteraction to false if you have component with Animated function and no need to wait the animation until finished before showing the GuidedPath.</p><p id="02905800-f0e9-42b4-95b4-dd00a9220521" class="">set isInteraction on loop animation</p><p id="e8ca66f9-b099-453c-bc17-f6ffc9a3e07c" class="">
+</p><h2 id="cd211de9-a4a4-4791-818e-dd61ada65d08" class="">Timer is Reset After finish.</h2><p id="8b102ecf-b34c-495d-9cb3-c5257c7aae27" class="">If you use component <strong>&lt;CountDownSF /&gt;</strong> or <strong>&lt;CardSmartTimer /&gt;</strong> inside component, probably there will be issue if you do not carefully check the component lifecycle. Arrow function will create new function every time the component re-render.</p><p id="1be6ef70-9068-4f84-a781-3310c95d829a" class=""><strong>Solution</strong></p><p id="254417b9-1716-48bc-8519-9f9fdc09e42b" class="">Do not put <strong>&lt;CountDownSF /&gt;</strong> or <strong>&lt;CardSmartTimer /&gt;</strong> inside arrow function if the component re-render after the timer is finished.</p><p id="3039cb32-ebd2-462a-aa5e-0f9a382b194d" class="">
+</p><h2 id="0146cf2a-ce0d-41a1-bd79-9caf62263561" class="">Auto Height BottomSheet </h2><p id="5d36f55e-7ecf-4113-bcf2-60fedc7fbf63" class="">There are two components to create BottomSheet, <strong>&lt;SmartBottomSheet /&gt;</strong> and <strong>&lt;ScrollableModal /&gt;.</strong></p><p id="439ce05c-fcb5-4351-9d27-8faa5146c2ac" class="">props autoHeight in SmartBottomSheet doesn&#x27;t always work, it will give transparent empty space at the bottom on Android.</p><p id="8ebd89e5-4901-476b-8632-4815b5558ee3" class="">S<strong>olution</strong></p><p id="e3389a7a-5d07-4bc5-baf3-989963938e82" class="">Use ScrollableModal if props autoHeight doesn&#x27;t always work.</p><p id="1246d81f-5ee8-44a1-ba14-31a10d338b2e" class="">
+</p><h2 id="7fb55ce1-e352-4880-9b3d-2086841ab50a" class="">Running Animation</h2><p id="bd764aa0-b654-4be1-9c0b-c0b993b14124" class="">React Native can run animation using native component by set isNativeDriver to true, but it only possible if the animation do not change the layout of the component, like rotation, opacity and translation. Updating the height or width of the view using animation probably will impact the app performance because the animation cannot use native component and will consume JS Thread.</p><p id="396500e6-aa0c-4dc6-af84-cfc7826d8e78" class="">S<strong>olution</strong></p><p id="2ee4eb54-8ac3-40ea-beac-3a05be108ea2" class="">Try to avoid animation that updating the layout of the view so you can set useNativeDriver to true.</p><p id="4f745d18-9709-402c-b583-04caf357e890" class="">
+</p><h2 id="ddfa10b3-6403-4758-81a7-d18e73a73013" class="">Margin inside SVG Animation</h2><p id="69603460-b091-4a2a-83af-5d8623dbc5c3" class=""><a href="https://github.com/lottie-react-native/lottie-react-native">react-native-lottie</a> will not remove empty spacer or margin automatically on SVG Animation</p><p id="c2ebf26e-54e2-436b-8ca7-358cae110a3c" class=""><strong>Solution</strong></p><p id="6a7670a6-fcf6-424c-b28f-ccae94e9f841" class="">Make the SVG animation with no margin.</p></div></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
