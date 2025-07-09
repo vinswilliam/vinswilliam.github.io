@@ -10,7 +10,7 @@ The original portfolio website had JavaScript and CSS files not loading on GitHu
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './', // ✅ This fixes the asset path issue!
+  base: '/', // ✅ For username.github.io repos that serve from root
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -20,7 +20,7 @@ export default defineConfig({
 })
 ```
 
-**Key Fix**: `base: './'` makes all asset paths relative instead of absolute.
+**Key Fix**: `base: '/'` makes all asset paths absolute for username.github.io repositories.
 
 ### 2. Created GitHub Actions Workflow (`.github/workflows/deploy.yml`)
 - Automatically builds and deploys on push to main branch
@@ -45,8 +45,8 @@ export default defineConfig({
 
 ### After (Works on GitHub Pages):
 ```html
-<script type="module" src="./assets/index-DFauo1fK.js"></script>
-<link rel="icon" type="image/svg+xml" href="./vite.svg" />
+<script type="module" src="/assets/index-DFauo1fK.js"></script>
+<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 ```
 
 ## Deployment Process
