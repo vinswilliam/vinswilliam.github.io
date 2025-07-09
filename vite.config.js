@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './', // Use relative paths for all assets - fixes GitHub Pages deployment
+  base: '/', // For username.github.io repos that serve from root
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

@@ -45,6 +45,37 @@ Ensure you're accessing the GitHub Pages URL, not the repository files directly:
 ❌ Wrong: https://github.com/yourusername/repository-name/blob/main/index.html
 ```
 
+### ✅ Solution 5: GitHub Pages Repository Type Fix
+**For `username.github.io` repositories:**
+
+If your URL is `https://username.github.io/` (not `https://username.github.io/project-name/`), you need absolute paths:
+
+```javascript
+// vite.config.js
+export default defineConfig({
+  base: '/', // ✅ For username.github.io repos
+})
+```
+
+**For project repositories:**
+
+If your URL is `https://username.github.io/project-name/`, you need relative or project-specific paths:
+
+```javascript
+// vite.config.js  
+export default defineConfig({
+  base: './', // ✅ For project repos
+})
+```
+
+After changing the config:
+```bash
+npm run build
+git add .
+git commit -m "Fix GitHub Pages paths"
+git push origin main
+```
+
 ## Quick Fixes
 
 ### Fix 1: Restart Development
