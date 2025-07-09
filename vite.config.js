@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/vinswilliam.github.io/', // For username.github.io repos that serve from root
+  base: '/', // For username.github.io repos that serve from root
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
