@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # Development environment
+  portfolio-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: futuristic-portfolio-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - VITE_HOST=0.0.0.0
+    restart: unless-stopped
+    profiles:
+      - dev
+
+  # Production environment (same as main docker-compose.yml)
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: futuristic-portfolio
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    profiles:
+      - prod
