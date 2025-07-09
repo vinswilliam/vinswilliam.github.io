@@ -91,6 +91,31 @@ A modern, futuristic web portfolio built with Vite and vanilla JavaScript, featu
    docker-compose --profile prod up --build
    ```
 
+### Option 3: GitHub Pages Deployment
+
+This project is configured for automatic deployment to GitHub Pages:
+
+1. **Automatic Deployment**: 
+   - Push changes to `main` or `master` branch
+   - GitHub Actions workflow automatically builds and deploys
+   - Site will be available at `https://yourusername.github.io/repository-name`
+
+2. **GitHub Pages Setup**:
+   - Go to repository Settings → Pages
+   - Set source to "GitHub Actions"
+   - The included workflow (`.github/workflows/deploy.yml`) handles everything
+
+3. **Important GitHub Pages Configuration**:
+   - Uses relative paths (`./`) for all assets via `vite.config.js`
+   - Configured with `base: './'` for proper GitHub Pages deployment
+   - All CSS, JavaScript, and image files will load correctly
+
+4. **Manual GitHub Pages Deployment**:
+   ```bash
+   npm run build
+   # Then push the dist/ folder or use the GitHub Actions workflow
+   ```
+
 ## 📋 Available Scripts
 
 - `npm run dev` - Start development server
