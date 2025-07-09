@@ -74,24 +74,7 @@ A modern, futuristic web portfolio built with Vite and vanilla JavaScript, featu
    npm run preview
    ```
 
-### Option 2: Docker Development
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd web-portfolio
-   ```
-
-2. **Start with Docker Compose**
-   ```bash
-   # Development environment
-   docker-compose -f docker-compose.dev.yml --profile dev up --build
-   
-   # Production environment
-   docker-compose --profile prod up --build
-   ```
-
-### Option 3: GitHub Pages Deployment
+### Option 2: GitHub Pages Deployment
 
 This project is configured for automatic deployment to GitHub Pages:
 
@@ -106,8 +89,8 @@ This project is configured for automatic deployment to GitHub Pages:
    - The included workflow (`.github/workflows/deploy.yml`) handles everything
 
 3. **Important GitHub Pages Configuration**:
-   - Uses relative paths (`./`) for all assets via `vite.config.js`
-   - Configured with `base: './'` for proper GitHub Pages deployment
+   - For `username.github.io` repos: uses `base: '/'` in `vite.config.js`
+   - For project repos: uses `base: './'` in `vite.config.js`
    - All CSS, JavaScript, and image files will load correctly
 
 4. **Manual GitHub Pages Deployment**:
@@ -222,90 +205,6 @@ For any questions or feedback, please reach out through the contact form on the 
 
 - Email: hello@portfolio.dev
 - GitHub: [@yourusername](https://github.com/yourusername)
-
-## 🐳 Docker Deployment
-
-### Quick Start with Docker
-
-**Using the startup script (Recommended):**
-```bash
-# Build and run in production mode
-./docker-start.sh run
-
-# Run in development mode
-./docker-start.sh dev
-
-# Stop containers
-./docker-start.sh stop
-
-# View logs
-./docker-start.sh logs
-
-# Clean up everything
-./docker-start.sh clean
-```
-
-**Using Docker Compose:**
-```bash
-# Production environment
-docker-compose up --build
-
-# Development environment
-docker-compose -f docker-compose.dev.yml --profile dev up --build
-
-# With custom port
-PORT=3000 docker-compose up --build
-
-# With Traefik reverse proxy
-docker-compose --profile traefik up --build
-```
-
-### Manual Docker Commands
-
-**Production Build:**
-```bash
-# Build the image
-docker build -t futuristic-portfolio .
-
-# Run the container
-docker run -d -p 8080:80 --name portfolio futuristic-portfolio
-```
-
-**Development Build:**
-```bash
-# Build development image
-docker build -f Dockerfile.dev -t futuristic-portfolio-dev .
-
-# Run development container with live reload
-docker run -d -p 5173:5173 -v $(pwd):/app -v /app/node_modules --name portfolio-dev futuristic-portfolio-dev
-```
-
-### Available Endpoints
-
-- **Production**: http://localhost:8080
-- **Development**: http://localhost:5173
-- **Traefik Dashboard** (if enabled): http://localhost:8081
-- **Health Check**: http://localhost:8080/health
-
-### Docker Features
-
-- **Multi-stage build** for optimized production images (~15MB final size)
-- **Nginx** server for production with gzip compression and security headers
-- **Health checks** for monitoring container status
-- **Development hot-reload** support with volume mounting
-- **Traefik integration** for reverse proxy and SSL (optional)
-- **Environment variable configuration** for ports and settings
-
-### Production Optimizations
-
-- ✅ Gzip compression enabled
-- ✅ Browser caching for static assets (1 year)
-- ✅ Security headers configured (XSS, CSRF protection)
-- ✅ Minimal Alpine Linux base image
-- ✅ Only production dependencies included in final image
-- ✅ Health checks for container monitoring
-- ✅ Auto-restart unless stopped
-
 ---
 
 Made with ❤️ and modern web technologies
