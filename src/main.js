@@ -9,7 +9,8 @@ const typewriterElement = document.querySelector('.typewriter');
 
 // Configuration
 const typewriterTexts = [
-  'Mobile App Developer',
+  'Software Engineer',
+  'Mobile Application Developer',
   'Full Stack Developer',
   'Creative Problem Solver',
   'Tech Enthusiast'
